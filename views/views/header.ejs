@@ -44,7 +44,7 @@
   }
   .screen .form-input {
     width: 100%;
-    margin: 20px 0px;
+    margin: 10px 0px;
   }
   .screen .form-input #join-user {
     padding: 10px 20px;
@@ -70,7 +70,7 @@
   }
 
   .screen h2 {
-    margin-bottom: 2em;
+    margin-bottom: 30px;
     font-size: 3em;
     font-weight: 700;
     padding: 5px 0px;
@@ -230,11 +230,10 @@
   }
 
   .chat-screen .typebox input {
-    flex: 1;
     height: 40px;
     padding: 10px;
     font-size: 16px;
-    border: 3px solid #13a4df;
+    border: 3px solid #474752;
     border-radius: 20px;
   }
 
@@ -259,6 +258,15 @@
     }
     .link ul li {
       margin-inline: .5em;
+      margin-right: 20px;
+    }
+    .screen h2 {
+      font-size: 2rem;
+    } 
+  }
+  @media screen and (max-height: 600px) {
+    .wrapper {
+      display: none;
     }
   }
 </style>
