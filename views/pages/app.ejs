@@ -7,8 +7,16 @@
     <meta name="description" content="" />
     <%- include('../views/header.ejs'); %>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -23,25 +31,39 @@
     />
     <script src="socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
+      integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
+      integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+      crossorigin="anonymous"
+    ></script>
   </head>
 
   <body>
     <div class="app">
       <div class="screen join-screen active">
         <div class="form wrap">
-          <h2 class="text-white">Connect With  <span class="text-span">Us</span></h2>
+          <h2 class="text-white">
+            Connect With <span class="text-span">Us</span>
+          </h2>
           <div class="form-input">
             <div class="form-floating mb-3">
-              <input type="email" class="form-control" id="username" placeholder="name@example.com">
+              <input
+                type="email"
+                class="form-control"
+                id="username"
+                placeholder="name@example.com"
+              />
               <label>Username</label>
             </div>
           </div>
-          <div class="form-input ">
+          <div class="form-input">
             <button id="join-user" class="form-control">Join</button>
           </div>
-
         </div>
         <div class="wrapper">
           <div class="logo-title">
@@ -55,19 +77,26 @@
             <div class="link">
               <ul>
                 <li class="nav-globe">
-                  <i class="bi bi-globe-asia-australia"></i><span class="logo-responsive"> RJM</span>
+                  <i class="bi bi-globe-asia-australia"></i
+                  ><span class="logo-responsive"> RJM</span>
                 </li>
                 <li>
                   <i class="bi bi-people-fill position-relative">
-                      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 10px;">
-                        <span id="act_user"></span>
-                        <span class="visually-hidden"></span>
-                      </span>
+                    <span
+                      class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                      style="font-size: 10px"
+                    >
+                      <span id="act_user"></span>
+                      <span class="visually-hidden"></span>
+                    </span>
                   </i>
                 </li>
                 <li>
                   <i class="bi bi-credit-card-2-front position-relative">
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 10px;">
+                    <span
+                      class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                      style="font-size: 10px"
+                    >
                       .
                       <span class="visually-hidden"></span>
                     </span>
@@ -112,16 +141,18 @@
               </ul>
             </div>
           </div>
-          
         </div>
-        <div class="messages"></div>
+        <div class="messages">
+          <div class="messageContainer"></div>
+        </div>
         <div class="typing-indicator"></div>
         <div class="typebox">
-          <div class="link-icon">
-            <i class="bi bi-card-image"></i>
-            <i class="bi bi-mic-fill"></i>
-          </div>
-          <input type="text" id="message-input" class="form-control" placeholder="Write your message..."/>
+          <input
+            type="text"
+            id="message-input"
+            class="form-control"
+            placeholder="Enter Message..."
+          />
           <button id="send-message">
             <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
           </button>
@@ -132,12 +163,11 @@
     <!-- javascript section -->
     <script type="text/javascript">
       (function () {
-        const count = document.getElementById('act_user');
+        const count = document.getElementById("act_user");
         const app = document.querySelector(".app");
         const socket = io();
-      
+
         let uname;
-      
         app
           .querySelector(".join-screen #join-user")
           .addEventListener("click", function () {
@@ -150,17 +180,17 @@
             app.querySelector(".join-screen").classList.remove("active");
             app.querySelector(".chat-screen").classList.add("active");
 
-            socket.on('countUser', (data) => {
-              count.innerText = `${data}`
-            })
+            socket.on("countUser", data => {
+              count.innerText = `${data}`;
+            });
           });
-      
+
         app
           .querySelector(".chat-screen #send-message")
           .addEventListener("click", function () {
             sendMessage();
           });
-      
+
         function handleKeyPress(event) {
           if (event.keyCode === 13) {
             sendMessage();
@@ -168,56 +198,49 @@
             socket.emit("typing");
           }
         }
-      
+
         app
           .querySelector(".chat-screen #message-input")
           .addEventListener("keypress", handleKeyPress);
-        
-        app.querySelector(".chat-screen #exit-chat").addEventListener("click", function () {
-          exitChat();
-        });
+
+        app
+          .querySelector(".chat-screen #exit-chat")
+          .addEventListener("click", function () {
+            exitChat();
+          });
+
+        // function exitChat() {
+        //   window.location.href = "/login";
+        //   socket.emit("disconnect", uname);
+        //   socket.disconnect();
+        // }
 
         function exitChat() {
-          socket.emit("exituser", uname);
+          window.location.href = "/app";
+          socket.emit("disconnect", uname);
           socket.disconnect();
         }
 
         window.addEventListener("beforeunload", function () {
           exitChat();
         });
-        
-        app
-          .querySelector(".chat-screen #exit-chat")
-          .addEventListener("click", function () {
-            socket.emit("exituser", uname);
-            window.location.href = "/login";
-          });
-      
+
         socket.on("update", function (update) {
           renderMessage("update", update);
         });
-      
+
         socket.on("chat", function (message) {
           renderMessage("other", message);
         });
-      
+
         socket.on("typing", function (user) {
           showTypingIndicator(user);
         });
-      
+
         socket.on("stopTyping", function (user) {
           hideTypingIndicator(user);
         });
 
-        socket.on("userLeft", function (username) {
-          renderMessage("update", username + " left the convo");
-        });
-
-        socket.on("acount", function (count) {
-          countUser(count);
-        });
-
-      
         function sendMessage() {
           let message = app.querySelector(".chat-screen #message-input").value;
           if (message.length == 0) {
@@ -233,13 +256,15 @@
             text: message,
             timestamp: new Date().getTime(),
           });
-      
+
           app.querySelector(".chat-screen #message-input").value = "";
           socket.emit("stopTyping");
         }
-      
+
         function renderMessage(type, message) {
-          let messageContainer = app.querySelector(".chat-screen .messages");
+          let messageContainer = app.querySelector(
+            ".messages .messageContainer"
+          );
           if (type == "my") {
             let el = document.createElement("div");
             el.setAttribute("class", "message my-message");
@@ -268,17 +293,21 @@
             el.innerText = message;
             messageContainer.appendChild(el);
           }
-          messageContainer.scrollTop = messageContainer.scrollHeight - messageContainer.clientHeight;
+          messageContainer.scrollTop = messageContainer.scrollHeight;
         }
-      
+
         function showTypingIndicator(user) {
-          let typingIndicator = app.querySelector(".chat-screen .typing-indicator");
+          let typingIndicator = app.querySelector(
+            ".chat-screen .typing-indicator"
+          );
           typingIndicator.innerText = `${user} is typing...`;
           typingIndicator.style.display = "block";
         }
 
         function hideTypingIndicator(user) {
-          let typingIndicator = app.querySelector(".chat-screen .typing-indicator");
+          let typingIndicator = app.querySelector(
+            ".chat-screen .typing-indicator"
+          );
           typingIndicator.style.display = "none";
         }
 
@@ -286,8 +315,7 @@
           const options = { hour: "numeric", minute: "numeric" };
           return new Date(timestamp).toLocaleTimeString([], options);
         }
-    })();
-
+      })();
     </script>
   </body>
 </html>

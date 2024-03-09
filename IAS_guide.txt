@@ -1,0 +1,4 @@
+install ka muna men san node.js
+para mapagana mo ito na source code pwd ka sa cmd
+install ka muna nodemon
+tas sa pag run pag may node.js ka na type mo lng yaa sa cmd mo "nodemon index.js or node index.js"
