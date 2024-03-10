@@ -21,6 +21,9 @@ app.set("view engine", "ejs");
 app.get("/app", function (req, res) {
   res.render("pages/app", { socketURL: defURL });
 });
+app.get("/login", function (req, res) {
+  res.render("pages/login", { socketURL: defURL });
+});
 
 // app.get("/login", function (req, res) {
 //   res.render("pages/login", { socketURL: defURL });

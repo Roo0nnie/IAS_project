@@ -1,3 +1,326 @@
 <style>
-  /* pwedi ka dito men mag css galing ang source code sa login */
+  * {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Roboto", sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+/* added code by marlon in case may need i change*/
+  #showPassword {
+  width: 20px; 
+  height: 20px;/* Adjust the scale factor as needed */
+  
+}
+.form-check-label[for="showPassword"] {
+  color: #f0f0f0; /* Change the label color */
+  margin-left :10px ;
+}
+.form-input p{
+  color: #f0f0f0;
+}
+/* end */
+
+  .app {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgb(31, 33, 34);
+    background: linear-gradient(
+      186deg,
+      rgba(31, 33, 34, 1) 0%,
+      rgba(13, 57, 107, 1) 40%,
+      rgba(12, 59, 80, 1) 100%
+    );
+  }
+  .app > .screen {
+    display: none;
+  }
+
+  .app > .screen.active {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .screen .form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 400px;
+  }
+  .screen .form-input {
+    width: 100%;
+    margin: 10px 0px;
+  }
+  .screen .form-input #join-user {
+    padding: 10px 20px;
+    background: none;
+    border: 3px solid #13a4df;
+    color: #13a4df;
+    font-size: 1.2em;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    border-radius: 7px;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .screen .form-input #join-user:hover {
+    background-color: #13a4df;
+    color: #ffffff;
+    border: 3px solid #13a4df;
+  }
+
+  .screen .form-input #join-user:focus {
+    outline: none;
+  }
+
+  .screen h2 {
+    margin-bottom: 30px;
+    font-size: 3em;
+    font-weight: 700;
+    padding: 5px 0px;
+    text-align: center;
+  }
+  .text-span {
+    color: #13a4df;
+  }
+
+  .screen .form-input label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .screen .form-input input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #555;
+    font-size: 16px;
+  }
+  .wrap {
+    position: relative;
+  }
+  .wrapper {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    color: white;
+    margin-bottom: 2em;
+  }
+  .logo-title {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 3px solid white;
+    position: relative;
+    margin-bottom: 2em;
+  }
+  .logo-title p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #13a4df;
+  }
+  .bi-person-circle,
+  .bi-box-arrow-left,
+  .bi-gear {
+    margin-right: 0.5em;
+  }
+  .screen .form-input button {
+    padding: 10px 20px;
+    background: #111;
+    color: #eee;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+  }
+
+  .chat-screen .header {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    height: 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  .chat-screen .header .logo {
+    font-size: 18px;
+    color: #eee;
+    font-weight: 600;
+  }
+
+  .chat-screen .header button {
+    padding: 5px 10px;
+    border: 1px solid #eee;
+    background: transparent;
+    color: #eee;
+    font-size: 15px;
+    cursor: pointer;
+    outline: none;
+  }
+  .chat-screen .header button i {
+    color: white;
+  }
+  .link {
+    margin-top: 1em;
+  }
+  .bi {
+    color: #13a4df;
+  }
+  .link ul li {
+    display: inline-block;
+    list-style: none;
+    margin-inline: 1.5em;
+    cursor: pointer;
+  }
+  .chat-screen .messages {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    width: 100%;
+    height: calc(90% - 120px);
+    background: linear-gradient(
+      186deg,
+      rgba(31, 33, 34, 1) 0%,
+      rgba(13, 57, 107, 1) 40%,
+      rgba(12, 59, 80, 1) 100%
+    );
+  }
+  .messages .messageContainer {
+    z-index: 2;
+    overflow: auto;
+    max-height: 100%;
+    width: 100%;
+  }
+
+  .chat-screen .messages .message {
+    display: flex;
+    padding: 10px;
+  }
+
+  .chat-screen .messages .message > div {
+    max-width: 80%;
+    background: #474752;
+    border-radius: 1em 1em 1em 0em;
+    box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+  }
+
+  .chat-screen .messages .message.my-message {
+    justify-content: flex-end;
+  }
+
+  .chat-screen .messages .message.other-message {
+    justify-content: flex-start;
+  }
+  .chat-screen .messages .message .chat-mine {
+    background: #ad5808;
+    border-radius: 1em 1em 0em 1em;
+  }
+
+  .chat-screen .messages .message .name {
+    font-size: 14px;
+    color: #bbb1b1;
+    margin-bottom: 5px;
+  }
+  .chat-screen .messages .message .text {
+    word-wrap: break-word;
+    color: white;
+  }
+
+  .chat-screen .messages .update {
+    text-align: center;
+    padding: 10px;
+    font-style: italic;
+    color: white;
+  }
+
+  .typing-indicator {
+    font-style: italic;
+    color: white;
+    text-align: center;
+    position: absolute;
+    top: 87%;
+    left: 50%;
+    transform: translate(-50%, -80%);
+    background-color: #474752;
+  }
+
+  .timestamp {
+    font-size: 12px;
+    color: white;
+  }
+
+  .chat-screen .typebox {
+    width: 100%;
+    height: 7rem;
+    display: flex;
+    align-items: center;
+    padding-inline: 20px;
+    padding-block: 10px;
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .chat-screen .typebox input {
+    flex: 1;
+    height: 3rem;
+    padding-left: 15px;
+    font-size: 16px;
+    border-radius: 15px;
+  }
+
+  .chat-screen .typebox .link-icon {
+    margin-left: 13px;
+    margin-right: 7px;
+    font-size: 20px;
+  }
+
+  .chat-screen .typebox button {
+    width: 70px;
+    height: 3rem;
+    margin-left: 10px;
+    background: linear-gradient(to bottom, #d37014, #45461f);
+    color: #fff;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+  @media screen and (max-width: 580px) {
+    .bi-credit-card-2-front,
+    .bi-telephone-fill,
+    .bi-camera-video-fill {
+      display: none;
+    }
+    .link {
+      margin-top: 1.3em;
+    }
+    .link ul li {
+      margin-inline: 0.5em;
+    }
+    .screen h2 {
+      font-size: 2rem;
+    }
+    .chat-screen .typebox button {
+      width: 55px;
+    }
+  }
+  @media screen and (max-height: 600px) {
+    .wrapper {
+      display: none;
+    }
+  }
 </style>
